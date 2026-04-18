@@ -4,7 +4,7 @@
  */
 export function paginate(page = 1, limit = 12) {
   const p = Math.max(1, Number(page) || 1);
-  const l = Math.min(50, Math.max(1, Number(limit) || 12));
+  const l = Math.min(100, Math.max(1, Number(limit) || 12));
   return {
     page: p,
     limit: l,

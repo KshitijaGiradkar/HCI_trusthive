@@ -125,11 +125,11 @@ function RecommendationCardModern({ rec }) {
       <article className="bg-white rounded-2xl shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 overflow-hidden h-full flex flex-col border border-transparent">
         {rec.imageUrl ? (
           <div className="relative h-40 sm:h-48 overflow-hidden bg-gray-100 shrink-0 border-b border-gray-100">
-            <img 
-              src={rec.imageUrl} 
-              alt={rec.title} 
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" 
-              loading="lazy" 
+            <img
+              src={rec.imageUrl}
+              alt={rec.title}
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              loading="lazy"
             />
             <div className="absolute top-3 left-3 bg-white/80 backdrop-blur rounded-full px-3 py-1 text-xs font-medium text-gray-900 shadow-sm">
               {rec.category}
@@ -304,23 +304,30 @@ export default function Home() {
     async function load() {
       setLoading(true);
       setError("");
+
       try {
         const base = getApiBase();
-        const trendingRes = await fetch(
-          `${base}/api/v1/recommendations/trending`
+
+        const res = await fetch(
+          `${base}/api/v1/recommendations?limit=50`
         );
-        const trendingJson = await trendingRes.json();
-        const trending = Array.isArray(trendingJson?.data)
-          ? trendingJson.data
+
+        const json = await res.json();
+
+        const recommendations = Array.isArray(json?.data)
+          ? json.data
           : [];
 
         const detailResults = await Promise.allSettled(
-          trending.map(async (t) => {
+          recommendations.map(async (t) => {
             const id = t.recommendation_id;
+
             const res = await fetch(
               `${base}/api/v1/recommendations/${id}`
             );
+
             const json = await res.json();
+
             return json?.recommendation ?? null;
           })
         );
@@ -329,15 +336,23 @@ export default function Home() {
           .filter((r) => r.status === "fulfilled" && r.value)
           .map((r) => {
             const rec = r.value;
+
             const categoryLabel = typeToCategory(rec.type);
+
             const { overallRating, overallStars, ratingCount } =
               computeOverallFromRatings(rec.ratings);
+
             const avgPrice = computeAverageMetric(rec.ratings, "price_rating");
             const avgQuality = computeAverageMetric(rec.ratings, "quality_rating");
             const avgSafety = computeAverageMetric(rec.ratings, "safety_rating");
+
             const rawPriceTier = Number(rec.price_range);
+
             const priceTier =
-              Number.isFinite(rawPriceTier) && rawPriceTier > 0 ? rawPriceTier : 1;
+              Number.isFinite(rawPriceTier) && rawPriceTier > 0
+                ? rawPriceTier
+                : 1;
+
             return {
               recommendationId: rec.recommendation_id,
               category: categoryLabel === "Other" ? "All" : categoryLabel,
@@ -358,11 +373,11 @@ export default function Home() {
             };
           });
 
-        if (!cancelled) setCards(mapped);
+        setCards(mapped);
       } catch (e) {
-        if (!cancelled) setError(e?.message ?? "Failed to load recommendations");
+        setError(e?.message ?? "Failed to load recommendations");
       } finally {
-        if (!cancelled) setLoading(false);
+        setLoading(false);
       }
     }
 
@@ -422,19 +437,19 @@ export default function Home() {
       <section className="rounded-3xl bg-gradient-to-r from-purple-100 via-indigo-100 to-pink-100 p-10 sm:p-16 shadow-lg shadow-indigo-100/50 mb-12 relative overflow-hidden">
         {/* subtle glow effect via an absolute div */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/40 blur-3xl rounded-full pointer-events-none"></div>
-        
+
         <div className="relative z-10 flex flex-col items-center text-center">
           <div className="inline-flex items-center justify-center rounded-full bg-white/60 backdrop-blur px-4 py-1.5 text-sm font-medium text-indigo-800 mb-6 shadow-sm">
             ✨ Community Powered
           </div>
-          
+
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 mb-4">
             Campus Community<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
               Recommendations
             </span>
           </h1>
-          
+
           <p className="mt-4 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto mb-8">
             Discover trusted picks from your campus — curated by the community for the community.
           </p>
@@ -484,14 +499,14 @@ export default function Home() {
             </div>
           </div>
           {isFilterVisible ? (
-             <FilterRow
-                 priceLevel={priceLevel}
-                 qualityLevel={qualityLevel}
-                 safetyLevel={safetyLevel}
-                 onPriceChange={setPriceLevel}
-                 onQualityChange={setQualityLevel}
-                 onSafetyChange={setSafetyLevel}
-             />
+            <FilterRow
+              priceLevel={priceLevel}
+              qualityLevel={qualityLevel}
+              safetyLevel={safetyLevel}
+              onPriceChange={setPriceLevel}
+              onQualityChange={setQualityLevel}
+              onSafetyChange={setSafetyLevel}
+            />
           ) : null}
         </div>
       </section>
@@ -540,7 +555,7 @@ export default function Home() {
             <p className="mt-1 text-indigo-100 text-sm">Help others discover the best spots around campus.</p>
           </div>
         </div>
-        <Link 
+        <Link
           href="/recommendations/new"
           className="shrink-0 bg-white text-indigo-600 font-semibold rounded-full px-8 py-3 shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300"
         >
