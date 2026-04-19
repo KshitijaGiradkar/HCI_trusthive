@@ -23,7 +23,8 @@ function Stars({ value, outOf = 5, interactive = false, onChange }) {
               "rounded-md p-0.5",
               interactive ? "cursor-pointer" : "cursor-default",
               filled
-                ? "text-zinc-900 dark:text-zinc-50"
+                // ? "text-zinc-900 dark:text-zinc-50"
+                ? "text-amber-500"
                 : "text-zinc-300 dark:text-zinc-700",
               interactive
                 ? "hover:text-zinc-600 dark:hover:text-zinc-200"
@@ -31,7 +32,7 @@ function Stars({ value, outOf = 5, interactive = false, onChange }) {
             ].join(" ")}
             aria-label={`${next} star`}
           >
-            <svg viewBox="0 0 20 20" aria-hidden="true" className="h-5 w-5">
+            <svg viewBox="0 0 20 20" aria-hidden="true" className="h-5 w-5 transition-transform active:scale-110">
               <path
                 d="M10 1.8 12.6 7l5.7.8-4.1 4 1 5.7L10 14.8 4.8 17.5l1-5.7-4.1-4L7.4 7 10 1.8Z"
                 fill={filled ? "currentColor" : "none"}
@@ -485,7 +486,11 @@ export default function RecommendationDetailsClient({ rec }) {
               {editingPost ? (
                 <input value={recLocation} onChange={(e) => setRecLocation(e.target.value)} className="w-full bg-white border border-gray-200 rounded px-2 py-1 text-sm outline-none focus:ring-1 focus:ring-indigo-500" />
               ) : (
-                <span className="text-sm font-semibold text-gray-900 block truncate">{recLocation || "Not specified"}</span>
+                // <span className="text-sm font-semibold text-gray-900 block truncate">{recLocation || "Not specified"}</span>
+                // <div className="text-sm font-semibold text-gray-900 overflow-x-auto whitespace-nowrap scrollbar-thin">
+                //   {recLocation || "Not specified"}
+                // </div>
+                <span className="text-sm font-semibold text-gray-900 block break-words leading-relaxed">{recLocation || "Not specified"}</span>
               )}
             </div>
           </div>
@@ -505,7 +510,18 @@ export default function RecommendationDetailsClient({ rec }) {
               {editingPost ? (
                 <input value={recBestTime} onChange={(e) => setRecBestTime(e.target.value)} className="w-full bg-white border border-gray-200 rounded px-2 py-1 text-sm outline-none focus:ring-1 focus:ring-indigo-500" />
               ) : (
-                <span className="text-sm font-semibold text-gray-900 block truncate">{recBestTime || "Not specified"}</span>
+                // <span className="text-sm font-semibold text-gray-900 block truncate">{recBestTime || "Not specified"}</span>
+                // <div className="text-sm font-semibold text-gray-900 overflow-x-auto whitespace-nowrap scrollbar-thin">
+                //   {recBestTime || "Not specified"}
+                // </div>
+                // <div className="flex-1 w-full overflow-hidden">
+                //   <div className="text-sm font-semibold text-gray-900 overflow-x-auto whitespace-nowrap">
+                //     {recBestTime || "Not specified"}
+                //   </div>
+                // </div>
+                <span className="text-sm font-semibold text-gray-900 block break-words leading-relaxed">
+                  {recBestTime || "Not specified"}
+                </span>
               )}
             </div>
           </div>
@@ -623,7 +639,8 @@ export default function RecommendationDetailsClient({ rec }) {
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-1">
                   <span className="font-bold text-gray-900 text-sm">{c.name}</span>
-                  <span className="text-xs text-gray-400 font-medium">{c.date}</span>
+                  {/* removed the comment dates */}
+                  {/* <span className="text-xs text-gray-400 font-medium">{c.date}</span> */}
                 </div>
                 {commentEditId === c.id ? (
                   <div className="mt-2">

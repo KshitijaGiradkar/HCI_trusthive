@@ -150,9 +150,9 @@ export default function RecommendationDetail({ id }) {
         </h1>
         <p className="mt-2 text-sm text-zinc-500">
           {rec.author?.name ?? "Unknown"} ·{" "}
-          {rec.created_at
+          {/* {rec.created_at
             ? new Date(rec.created_at).toLocaleString()
-            : ""}
+            : ""} */}
         </p>
       </div>
 
@@ -180,11 +180,10 @@ export default function RecommendationDetail({ id }) {
           type="button"
           disabled={busy}
           onClick={() => onVote("upvote")}
-          className={`rounded-lg px-3 py-1.5 text-sm font-medium ${
-            rec.viewer_vote_type === "upvote"
-              ? "bg-teal-600 text-white"
-              : "border border-zinc-300 bg-white hover:bg-zinc-50 dark:border-zinc-600 dark:bg-zinc-900 dark:hover:bg-zinc-800"
-          }`}
+          className={`rounded-lg px-3 py-1.5 text-sm font-medium ${rec.viewer_vote_type === "upvote"
+            ? "bg-teal-600 text-white"
+            : "border border-zinc-300 bg-white hover:bg-zinc-50 dark:border-zinc-600 dark:bg-zinc-900 dark:hover:bg-zinc-800"
+            }`}
         >
           Upvote
         </button>
@@ -192,11 +191,10 @@ export default function RecommendationDetail({ id }) {
           type="button"
           disabled={busy}
           onClick={() => onVote("downvote")}
-          className={`rounded-lg px-3 py-1.5 text-sm font-medium ${
-            rec.viewer_vote_type === "downvote"
-              ? "bg-zinc-700 text-white"
-              : "border border-zinc-300 bg-white hover:bg-zinc-50 dark:border-zinc-600 dark:bg-zinc-900 dark:hover:bg-zinc-800"
-          }`}
+          className={`rounded-lg px-3 py-1.5 text-sm font-medium ${rec.viewer_vote_type === "downvote"
+            ? "bg-zinc-700 text-white"
+            : "border border-zinc-300 bg-white hover:bg-zinc-50 dark:border-zinc-600 dark:bg-zinc-900 dark:hover:bg-zinc-800"
+            }`}
         >
           Downvote
         </button>

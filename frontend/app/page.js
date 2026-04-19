@@ -134,9 +134,9 @@ function RecommendationCardModern({ rec }) {
             <div className="absolute top-3 left-3 bg-white/80 dark:bg-zinc-900/80 backdrop-blur rounded-full px-3 py-1 text-xs font-medium text-gray-900 dark:text-zinc-100 shadow-sm">
               {rec.category}
             </div>
-            <div className="absolute top-3 right-3 text-xs font-medium text-white shadow-sm drop-shadow-md">
+            {/* <div className="absolute top-3 right-3 text-xs font-medium text-white shadow-sm drop-shadow-md">
               {rec.date}
-            </div>
+            </div> */}
           </div>
         ) : (
           <div className="relative h-40 sm:h-48 overflow-hidden bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-zinc-800 dark:to-zinc-800 shrink-0 flex items-center justify-center border-b border-gray-100/50 dark:border-zinc-800">
@@ -144,9 +144,9 @@ function RecommendationCardModern({ rec }) {
             <div className="absolute top-3 left-3 bg-white/80 dark:bg-zinc-900/80 backdrop-blur rounded-full px-3 py-1 text-xs font-medium text-gray-900 dark:text-zinc-100 shadow-sm">
               {rec.category}
             </div>
-            <div className="absolute top-3 right-3 text-xs font-medium text-gray-500 dark:text-zinc-400">
+            {/* <div className="absolute top-3 right-3 text-xs font-medium text-gray-500 dark:text-zinc-400">
               {rec.date}
-            </div>
+            </div> */}
           </div>
         )}
 
@@ -355,7 +355,8 @@ export default function Home() {
 
             return {
               recommendationId: rec.recommendation_id,
-              category: categoryLabel === "Other" ? "All" : categoryLabel,
+              //category: categoryLabel === "Other" ? "All" : categoryLabel,
+              category: categoryLabel,
               title: rec.title,
               description: rec.description,
               priceRange: formatPriceRange(rec.price_range),

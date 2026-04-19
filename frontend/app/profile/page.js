@@ -185,7 +185,7 @@ export default function ProfilePage() {
                       <div className="mt-1 flex items-center gap-2 text-xs font-medium text-gray-400">
                         <span className="uppercase tracking-wider">{typeLabel(post.type)}</span>
                         <span>•</span>
-                        <span>{new Date(post.created_at).toLocaleDateString()}</span>
+                        {/* <span>{new Date(post.created_at).toLocaleDateString()}</span> */}
                       </div>
                     </div>
                   </div>

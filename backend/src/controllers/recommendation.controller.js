@@ -9,6 +9,7 @@ function buildWhereParts(q) {
   const parts = [];
   if (q.type) {
     parts.push(Prisma.sql`r.type::text = ${q.type}`);
+    //parts.push(Prisma.sql`LOWER(r.type::text) = LOWER(${q.type})`);
   }
   if (q.search?.trim()) {
     const term = `%${q.search.trim()}%`;

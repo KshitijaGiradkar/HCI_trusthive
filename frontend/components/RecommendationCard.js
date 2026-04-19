@@ -34,9 +34,9 @@ export default function RecommendationCard({ rec }) {
       </p>
       <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
         {rec.author?.name ?? "Unknown"}
-        {rec.created_at
+        {/* {rec.created_at
           ? ` · ${new Date(rec.created_at).toLocaleDateString()}`
-          : ""}
+          : ""} */}
       </p>
     </Link>
   );

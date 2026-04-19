@@ -172,7 +172,7 @@ export default function NewRecommendationPage() {
           Share The Circle
         </div>
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 mb-3">
-          Share A <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Discovery</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Share A Discovery</span>
         </h1>
         <p className="text-sm sm:text-base text-gray-500 mt-2 max-w-xl mx-auto">
           Add your favorite spot, service, or hidden gem to the community map.
