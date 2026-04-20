@@ -105,7 +105,7 @@ export default function RegisterPage() {
                     required
                     minLength={2}
                     autoComplete="name"
-                    placeholder="John Doe"
+                    placeholder="Rakesh Sharma"
                     className="w-full rounded-2xl border border-gray-200 bg-white/60 py-3.5 pl-11 pr-4 text-sm text-gray-900 shadow-sm outline-none transition-all placeholder:text-gray-400 focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   />
                </div>
